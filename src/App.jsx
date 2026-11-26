@@ -53,7 +53,7 @@ function App() {
   const handleSearch = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch(`http://localhost:5000/api/users/discover?city=${searchCity}`, {
+      const res = await fetch(`https://diaspora-ke-backend.onrender.com/api/users/discover?city=${searchCity}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -64,7 +64,7 @@ function App() {
   const handleConnect = async (receiverId) => {
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:5000/api/connections', {
+      const res = await fetch('https://diaspora-ke-backend.onrender.com/api/connections', {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
@@ -96,7 +96,6 @@ function App() {
           </div>
         </nav>
 
-        {/* TABS */}
         <div className="tabs">
           <button className={activeTab === 'discover' ? 'active' : ''} onClick={() => setActiveTab('discover')}>Discover People</button>
           <button className={activeTab === 'jobs' ? 'active' : ''} onClick={() => setActiveTab('jobs')}>Job Opportunities</button>
@@ -174,7 +173,7 @@ function App() {
                   const interests = document.getElementById('interestsInput').value.split(',');
                   const token = localStorage.getItem('token');
                   
-                  const res = await fetch('http://localhost:5000/api/users/profile', {
+                  const res = await fetch('https://diaspora-ke-backend.onrender.com/api/users/profile', {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
                     body: JSON.stringify({ home_county: county, interests: interests })
@@ -193,13 +192,14 @@ function App() {
   // --- LAMP LOGIN ---
   return (
     <div className={`room ${lightsOn ? 'lights-on' : 'lights-off'}`}>
+      
+      {/* THE NEW LAMP */}
       <div className="lamp-container">
-        <div className="cord" onClick={() => setLightsOn(!lightsOn)}>
-          <div className="cord-line"></div>
-          <div className="lamp-bulb"></div>
-          <div className="pull-ring"></div>
+        <div className="lamp-shade"></div>
+        <div className="lamp-string-container" onClick={() => setLightsOn(!lightsOn)}>
+          <div className="lamp-string"></div>
+          <div className="lamp-knob"></div>
         </div>
-        <p className="click-hint">Pull the ring!</p>
       </div>
 
       <div className="form-container">
