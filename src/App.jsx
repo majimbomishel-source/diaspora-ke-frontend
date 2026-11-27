@@ -189,38 +189,51 @@ function App() {
     );
   }
 
-  // --- LAMP LOGIN ---
+  // --- SPLIT SCREEN LAMP LOGIN ---
   return (
-    <div className={`room ${lightsOn ? 'lights-on' : 'lights-off'}`}>
+    <div className="split-screen">
       
-      {/* THE NEW LAMP */}
-      <div className="lamp-container">
-        <div className="lamp-shade"></div>
-        <div className="lamp-string-container" onClick={() => setLightsOn(!lightsOn)}>
+      {/* LEFT SIDE: The Lamp */}
+      <div className={`lamp-section ${lightsOn ? 'lights-on' : ''}`}>
+        <img 
+          src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?q=80&w=800&auto=format&fit=crop" 
+          alt="Table Lamp" 
+          className="table-lamp"
+        />
+        
+        {/* The string hanging from the lamp */}
+        <div 
+          className="lamp-string-container" 
+          onClick={() => setLightsOn(!lightsOn)}
+        >
           <div className="lamp-string"></div>
           <div className="lamp-knob"></div>
         </div>
+        <p className="click-hint">Pull the cord!</p>
       </div>
 
-      <div className="form-container">
-        {!lightsOn ? (
-          <form className="form-box login-form" onSubmit={handleLoginSubmit}>
-            <h2>Welcome Back</h2>
-            <p>Login to Diaspora KE</p>
-            <input type="email" name="email" placeholder="Email" onChange={handleLoginChange} required />
-            <input type="password" name="password" placeholder="Password" onChange={handleLoginChange} required />
-            <button type="submit">Login</button>
-          </form>
-        ) : (
-          <form className="form-box register-form" onSubmit={handleRegisterSubmit}>
-            <h2>Join the Community</h2>
-            <p>Create your Diaspora KE account</p>
-            <input type="text" name="full_name" placeholder="Full Name" onChange={handleRegisterChange} required />
-            <input type="email" name="email" placeholder="Email" onChange={handleRegisterChange} required />
-            <input type="password" name="password" placeholder="Password" onChange={handleRegisterChange} required />
-            <button type="submit">Register</button>
-          </form>
-        )}
+      {/* RIGHT SIDE: The Form */}
+      <div className="form-section">
+        <div className="form-container">
+          {!lightsOn ? (
+            <form className="form-box login-form" onSubmit={handleLoginSubmit}>
+              <h2>Welcome Back</h2>
+              <p>Login to Diaspora KE</p>
+              <input type="email" name="email" placeholder="Email" onChange={handleLoginChange} required />
+              <input type="password" name="password" placeholder="Password" onChange={handleLoginChange} required />
+              <button type="submit">Login</button>
+            </form>
+          ) : (
+            <form className="form-box register-form" onSubmit={handleRegisterSubmit}>
+              <h2>Join the Community</h2>
+              <p>Create your Diaspora KE account</p>
+              <input type="text" name="full_name" placeholder="Full Name" onChange={handleRegisterChange} required />
+              <input type="email" name="email" placeholder="Email" onChange={handleRegisterChange} required />
+              <input type="password" name="password" placeholder="Password" onChange={handleRegisterChange} required />
+              <button type="submit">Register</button>
+            </form>
+          )}
+        </div>
       </div>
     </div>
   );
